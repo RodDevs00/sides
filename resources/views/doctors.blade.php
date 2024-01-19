@@ -46,15 +46,12 @@
                                             <div class="row">
                                                 @foreach ($doctors as $doctor)
                                                     <div class="col-md-4 col-xl-4">
-                                                        <div class="card hover-md" onclick="location.href='{{ route('doctors.show', $doctor->id) }}'">
-                                                            <div class="card-block">
-                                                                <div class="row align-items-center justify-content-center">
-                                                                    <div class="col">
-                                                                        <img class="img-fluid " style="width:100px;" src="/img/pictures/{{ $doctor->image }}" alt="doctor">
-                                                                        <h5>{{ $doctor->name }}</h5>
-                                                                        <span>{{ $doctor->doctor->specialty ?? 'General' }}</span>
-                                                                    </div>
-                                                                </div>
+                                                        <div class="card mb-4 hover-md" onclick="location.href='{{ route('doctors.show', $doctor->id) }}'">
+                                                            <img class="card-img-top" src="/img/pictures/{{ $doctor->image }}" alt="doctor" style="height: 200px; object-fit: cover;">
+                                                            <div class="card-body">
+                                                                <h5 class="card-title">{{ $doctor->name }}</h5>
+                                                                <p class="card-text">{{ $doctor->doctor->specialty ?? 'General' }}</p>
+                                                                <a href="{{ route('doctors.show', $doctor->id) }}" class="btn btn-primary">Details</a>
                                                             </div>
                                                         </div>
                                                     </div>

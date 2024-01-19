@@ -76,20 +76,20 @@ class DoctorController extends Controller
         $user = auth()->user();
 
         if ($user->type !== 'admin') {
-            return redirect(route('doctors.index'))->withError('Usuário sem permissões!');
+            return redirect(route('doctors.index'))->withError('User without permissions!');
         }
 
         $storeResponse = $this->userService->store($request, 'doctor');
 
         if (!$storeResponse->success) {
-            return redirect(route('doctors.index'))->withError('Erro ao criar usuário!');
+            return redirect(route('doctors.index'))->withError('Error creating user!');
         }
 
-        return redirect(route('doctors.index'))->withSuccess('Usuário criado com sucesso!');
+        return redirect(route('doctors.index'))->withSuccess('User created successfully!');
     }
 
     /**
-     * Display and how the form for editing the specified resource.
+     * Display and show the form for editing the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -119,10 +119,10 @@ class DoctorController extends Controller
         $updateResponse = $this->userService->update($id, $request);
 
         if (!$updateResponse->success) {
-            return redirect(route('doctors.show', $id))->withError('Erro ao editar usuário!');
+            return redirect(route('doctors.show', $id))->withError('Error editing user!');
         }
 
-        return redirect(route('doctors.show', $id))->withSuccess('Usuário editado com sucesso!');
+        return redirect(route('doctors.show', $id))->withSuccess('User edited successfully!');
     }
 
     /**
@@ -136,15 +136,15 @@ class DoctorController extends Controller
         $user = auth()->user();
 
         if ($user->type !== 'admin') {
-            return redirect(route('doctors.index'))->withError('Usuário sem permissões!');
+            return redirect(route('doctors.index'))->withError('User without permissions!');
         }
 
         $destroyResponse = $this->userService->destroy($id);
 
         if (!$destroyResponse->success) {
-            return redirect(route('doctors.index'))->withError('Erro ao remover usuário!');
+            return redirect(route('doctors.index'))->withError('Error removing user!');
         }
 
-        return redirect(route('doctors.index'))->withSuccess('Usuário removido com sucesso!');
+        return redirect(route('doctors.index'))->withSuccess('User removed successfully!');
     }
 }

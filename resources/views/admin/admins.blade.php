@@ -42,13 +42,13 @@
                                         </div>
                                         <div class="card-block text-center">
                                             <div class="row">
-                                                @foreach ($admins as $admin)
+                                            @foreach ($admins as $admin)
                                                     <div class="col-md-6 col-xl-6">
                                                         <div class="card hover-md" onclick="location.href='{{ route('admins.show', $admin->id) }}'">
                                                             <div class="card-block">
                                                                 <div class="row align-items-center justify-content-center">
                                                                     <div class="col-auto">
-                                                                        <img class="img-fluid rounded-circle" style="width:80px;" src="/img/pictures/{{ $admin->image }}" alt="admin">
+                                                                        <img class="img-fluid rounded-circle" style="width: 80px;" src="{{ asset('img/pictures/' . $admin->image) }}" alt="admin">
                                                                     </div>
                                                                     <div class="col">
                                                                         <h5>{{ $admin->name }}</h5>

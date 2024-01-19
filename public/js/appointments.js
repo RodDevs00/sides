@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var calendar = new FullCalendar.Calendar(calendarEl, {
         height: '100%',
         expandRows: true,
-        locale: 'pt-br',
+        locale: 'en',
         initialView: 'timeGridWeek',
         events: "/appointments/load",
         allDaySlot: false,
@@ -14,12 +14,12 @@ document.addEventListener('DOMContentLoaded', function() {
         hiddenDays: [0, 6],
         businessHours: [
             {
-                daysOfWeek: [ 1, 2, 3, 4, 5 ],
+                daysOfWeek: [1, 2, 3, 4, 5],
                 startTime: '08:00',
                 endTime: '13:00'
             },
             {
-                daysOfWeek: [ 1, 2, 3, 4, 5 ],
+                daysOfWeek: [1, 2, 3, 4, 5],
                 startTime: '14:00',
                 endTime: '19:00'
             }
@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                     </div>
                                     <div class="col">
                                         <h5>${doctor.name}</h5>
-                                        <span>${doctor.specialty ?? 'Geral'}</span>
+                                        <span>${doctor.specialty ?? 'General'}</span>
                                     </div>
                                 </div>
                             </div>
@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function() {
             html += '</div>';
 
             Swal.fire({
-                title: `Médicos disponíveis:`,
+                title: `Available Doctors:`,
                 html: html,
                 width: '80%',
                 showConfirmButton: false,
@@ -67,8 +67,8 @@ document.addEventListener('DOMContentLoaded', function() {
 function setAppointment(date, doctorId, doctorName) {
     Swal.close();
     Swal.fire({
-        title: 'Tem certeza?',
-        text: `Agendar consulta com ${doctorName}?`,
+        title: 'Are you sure?',
+        text: `Schedule an appointment with ${doctorName}?`,
         icon: 'warning',
         showCancelButton: true,
         customClass: {
@@ -76,8 +76,8 @@ function setAppointment(date, doctorId, doctorName) {
             cancelButton: 'btn btn-outline-danger'
         },
         buttonsStyling: false,
-        confirmButtonText: 'Sim, pode agendar!',
-        cancelButtonText: 'Cancelar',
+        confirmButtonText: 'Yes, schedule it!',
+        cancelButtonText: 'Cancel',
         reverseButtons: true
     }).then((result) => {
         if (result.value) {

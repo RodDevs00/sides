@@ -57,16 +57,16 @@ class UserController extends Controller
         $user = auth()->user();
 
         if ($user->type !== 'admin') {
-            return redirect(route('admins.index'))->withError('Usuário sem permissões!');
+            return redirect(route('admins.index'))->withError('User without permissions!');
         }
 
         $storeResponse = $this->userService->store($request, 'admin');
 
         if (!$storeResponse->success) {
-            return redirect(route('admins.index'))->withError('Erro ao criar usuário!');
+            return redirect(route('admins.index'))->withError('Error creating user!');
         }
 
-        return redirect(route('admins.index'))->withSuccess('Usuário criado com sucesso!');
+        return redirect(route('admins.index'))->withSuccess('User created successfully!');
     }
 
     /**
@@ -109,10 +109,10 @@ class UserController extends Controller
         $updateResponse = $this->userService->update($user->id, $request);
 
         if (!$updateResponse->success) {
-            return redirect(route('users.edit', $user->id))->withError('Erro ao editar usuário!');
+            return redirect(route('users.edit', $user->id))->withError('Error editing user!');
         }
 
-        return redirect(route('users.edit', $user->id))->withSuccess('Usuário editado com sucesso!');
+        return redirect(route('users.edit', $user->id))->withSuccess('User edited successfully!');
     }
 
     /**
@@ -126,16 +126,16 @@ class UserController extends Controller
         $user = auth()->user();
 
         if ($user->type !== 'admin') {
-            return redirect(route('admins.index'))->withError('Usuário sem permissões!');
+            return redirect(route('admins.index'))->withError('User without permissions!');
         }
 
         $destroyResponse = $this->userService->destroy($id);
 
         if (!$destroyResponse->success) {
             dd($destroyResponse->errors);
-            return redirect(route('admins.index'))->withError('Erro ao remover usuário!');
+            return redirect(route('admins.index'))->withError('Error removing user!');
         }
 
-        return redirect(route('admins.index'))->withSuccess('Usuário removido com sucesso!');
+        return redirect(route('admins.index'))->withSuccess('User removed successfully!');
     }
 }

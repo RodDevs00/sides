@@ -23,9 +23,9 @@ class AuthController extends Controller
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
             $user = auth()->user();
-            return redirect('/dashboard')->withSuccess('Bem-vindo, ' . $user->name . '!');
+            return redirect('/dashboard')->withSuccess('Welcome, ' . $user->name . '!');
         }
-        return redirect()->back()->withError('Ops! Login incorreto.');
+        return redirect()->back()->withError('Oops! Incorrect login.');
     }
 
     public function makeAppLogin(Request $request)
@@ -64,10 +64,10 @@ class AuthController extends Controller
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
             $user = auth()->user();
-            return redirect('/dashboard')->withSuccess('Usuário criado com sucesso!');
+            return redirect('/dashboard')->withSuccess('User created successfully!');
         }
 
-        return redirect()->back()->withError('Erro ao criar o usuário!');
+        return redirect()->back()->withError('Error creating user!');
     }
 
     public function logout()

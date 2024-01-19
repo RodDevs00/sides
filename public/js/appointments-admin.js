@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var calendar = new FullCalendar.Calendar(calendarEl, {
         height: '100%',
         expandRows: true,
-        locale: 'pt-br',
+        locale: 'en',  // Locale set to English
         initialView: 'timeGridWeek',
         events: "/appointments/load-all",
         allDaySlot: false,
@@ -14,12 +14,12 @@ document.addEventListener('DOMContentLoaded', function() {
         hiddenDays: [0, 6],
         businessHours: [
             {
-                daysOfWeek: [ 1, 2, 3, 4, 5 ],
+                daysOfWeek: [1, 2, 3, 4, 5],
                 startTime: '08:00',
                 endTime: '13:00'
             },
             {
-                daysOfWeek: [ 1, 2, 3, 4, 5 ],
+                daysOfWeek: [1, 2, 3, 4, 5],
                 startTime: '14:00',
                 endTime: '19:00'
             }
@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                     </div>
                                     <div class="col">
                                         <h5>${doctor.name}</h5>
-                                        <span>${doctor.specialty ?? 'Geral'}</span>
+                                        <span>${doctor.specialty ?? 'General'}</span>
                                     </div>
                                 </div>
                             </div>
@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function() {
             html += '</div>';
 
             Swal.fire({
-                title: `Médicos disponíveis:`,
+                title: `Available Doctors:`,
                 html: html,
                 width: '80%',
                 showConfirmButton: false,
@@ -72,9 +72,9 @@ async function getPatient(date, doctorId, doctorName) {
         <table id="tb-patients" class="display" style="width:100%">
             <thead>
                 <tr>
-                    <th>Imagem</th>
-                    <th>Nome</th>
-                    <th>Editar</th>
+                    <th>Image</th>
+                    <th>Name</th>
+                    <th>Edit</th>
                 </tr>
             </thead>
             <tbody>
@@ -105,7 +105,7 @@ async function getPatient(date, doctorId, doctorName) {
     `;
 
     Swal.fire({
-        title: `Pacientes disponíveis:`,
+        title: `Available Patients:`,
         html: html,
         width: '80%',
         showConfirmButton: false,
@@ -118,8 +118,8 @@ async function getPatient(date, doctorId, doctorName) {
 function setAppointment(date, doctorId, doctorName, patientId, patientName) {
     Swal.close();
     Swal.fire({
-        title: 'Tem certeza?',
-        text: `Agendar consulta com ${doctorName} para ${patientName}?`,
+        title: 'Are you sure?',
+        text: `Schedule an appointment with ${doctorName} for ${patientName}?`,
         icon: 'warning',
         showCancelButton: true,
         customClass: {
@@ -127,8 +127,8 @@ function setAppointment(date, doctorId, doctorName, patientId, patientName) {
             cancelButton: 'btn btn-outline-danger'
         },
         buttonsStyling: false,
-        confirmButtonText: 'Sim, pode agendar!',
-        cancelButtonText: 'Cancelar',
+        confirmButtonText: 'Yes, schedule it!',
+        cancelButtonText: 'Cancel',
         reverseButtons: true
     }).then((result) => {
         if (result.value) {

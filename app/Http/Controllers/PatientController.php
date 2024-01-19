@@ -76,16 +76,16 @@ class PatientController extends Controller
         $user = auth()->user();
 
         if ($user->type !== 'admin') {
-            return redirect(route('patients.index'))->withError('Usuário sem permissões!');
+            return redirect(route('patients.index'))->withError('User without permissions!');
         }
 
         $storeResponse = $this->userService->store($request, 'patient');
 
         if (!$storeResponse->success) {
-            return redirect(route('patients.index'))->withError('Erro ao criar usuário!');
+            return redirect(route('patients.index'))->withError('Error creating user!');
         }
 
-        return redirect(route('patients.index'))->withSuccess('Usuário criado com sucesso!');
+        return redirect(route('patients.index'))->withSuccess('User created successfully!');
     }
 
     /**
@@ -115,10 +115,10 @@ class PatientController extends Controller
         $updateResponse = $this->userService->update($id, $request);
 
         if (!$updateResponse->success) {
-            return redirect(route('patients.show', $id))->withError('Erro ao editar usuário!');
+            return redirect(route('patients.show', $id))->withError('Error editing user!');
         }
 
-        return redirect(route('patients.show', $id))->withSuccess('Usuário editado com sucesso!');
+        return redirect(route('patients.show', $id))->withSuccess('User edited successfully!');
     }
 
     /**
@@ -132,15 +132,15 @@ class PatientController extends Controller
         $user = auth()->user();
 
         if ($user->type !== 'admin') {
-            return redirect(route('patients.index'))->withError('Usuário sem permissões!');
+            return redirect(route('patients.index'))->withError('User without permissions!');
         }
 
         $destroyResponse = $this->userService->destroy($id);
 
         if (!$destroyResponse->success) {
-            return redirect(route('patients.index'))->withError('Erro ao remover usuário!');
+            return redirect(route('patients.index'))->withError('Error removing user!');
         }
 
-        return redirect(route('patients.index'))->withSuccess('Usuário removido com sucesso!');
+        return redirect(route('patients.index'))->withSuccess('User removed successfully!');
     }
 }

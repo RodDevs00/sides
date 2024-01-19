@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', '| Médico')
+@section('title', '| Doctor')
 @section('sidebar_doctors', 'active')
 
 @section('content')
@@ -15,12 +15,12 @@
                             <div class="row align-items-center">
                                 <div class="col-md-12">
                                     <div class="page-header-title">
-                                        <h5 class="m-b-10">Médico</h5>
+                                        <h5 class="m-b-10">Doctor</h5>
                                     </div>
                                     <ul class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="{{ route('dashboard') }}"><i class="feather icon-home"></i></a></li>
-                                        <li class="breadcrumb-item"><a href="{{ route('doctors.index') }}">Médicos</a></li>
-                                        <li class="breadcrumb-item"><a href="javascript:">Médico</a></li>
+                                        <li class="breadcrumb-item"><a href="{{ route('doctors.index') }}">Doctors</a></li>
+                                        <li class="breadcrumb-item"><a href="javascript:">Doctor</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -34,7 +34,7 @@
                                 <div class="col-sm-12">
                                     <div class="card User-Activity">
                                         <div class="card-header">
-                                            <h5>Novo Médico</h5>
+                                            <h5>New Doctor</h5>
                                         </div>
                                         <div class="card-block pb-0">
                                             <form class="link-form" action='{{ route('doctors.store') }}' method='POST' enctype="multipart/form-data">
@@ -45,12 +45,12 @@
                                                 <div class="controls" style="display: none;">
                                                     <input type="file" name="image"/>
                                                 </div>
-                                                <input id='doctor-name' class='form-control' type='text' name='name' placeholder="Nome" required>
+                                                <input id='doctor-name' class='form-control' type='text' name='name' placeholder="Name" required>
                                                 <input id='doctor-email' class='form-control mt-3' type='text' name='email' placeholder="Email" required>
-                                                <input id='doctor-password' class='form-control mt-3' type='password' name='password' placeholder="Senha" required>
-                                                <input class='form-control mt-3' type='text' name='specialty' placeholder="Especialização">
+                                                <input id='doctor-password' class='form-control mt-3' type='password' name='password' placeholder="Password" required>
+                                                <input class='form-control mt-3' type='text' name='specialty' placeholder="Specialty">
                                                 <br>
-                                                <button class='btn btn-outline-primary' type='submit'>Enviar</button>
+                                                <button class='btn btn-outline-primary' type='submit'>Submit</button>
                                                 <br>
                                             </form>
                                         </div>
