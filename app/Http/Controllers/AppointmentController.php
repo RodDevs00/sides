@@ -11,10 +11,8 @@ class AppointmentController extends Controller
     protected $appointmentService;
     protected $appointmentModel;
 
-    public function __construct(
-        AppointmentService $appointmentService,
-        Appointment $appointmentModel
-    ) {
+    public function __construct(AppointmentService $appointmentService, Appointment $appointmentModel)
+    {
         $this->appointmentService = $appointmentService;
         $this->appointmentModel = $appointmentModel;
     }
@@ -24,9 +22,9 @@ class AppointmentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $user = auth()->user();
+        $user = $request->user();
 
         if ($user->type === 'admin') {
             return view('admin.appointments', compact('user'));
@@ -83,13 +81,13 @@ class AppointmentController extends Controller
      */
     public function store(Request $request)
     {
-        $storeReponse = $this->appointmentService->store($request->date, $request->doctor, $request->patient);
+        $storeResponse = $this->appointmentService->store($request->date, $request->doctor, $request->patient);
 
-        if (!$storeReponse->success) {
-            return redirect()->back()->withError('Erro ao agendar consulta');
+        if (!$storeResponse->success) {
+            return redirect()->back()->withError('Error scheduling appointment');
         }
 
-        return redirect()->back()->withSuccess('Consulta agendada!');
+        return redirect()->back()->withSuccess('Appointment scheduled!');
     }
 
     /**
@@ -125,18 +123,6 @@ class AppointmentController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
      * Cancel the appointment.
      *
      * @param  int  $id
@@ -144,13 +130,13 @@ class AppointmentController extends Controller
      */
     public function cancel(int $id)
     {
-        $cancelReponse = $this->appointmentService->cancel($id);
+        $cancelResponse = $this->appointmentService->cancel($id);
 
-        if (!$cancelReponse->success) {
-            return redirect()->route('appointments.index')->withError('Erro ao cancelar consulta');
+        if (!$cancelResponse->success) {
+            return redirect()->route('appointments.index')->withError('Error canceling appointment');
         }
 
-        return redirect()->route('appointments.index')->withSuccess('Consulta cancelada!');
+        return redirect()->route('appointments.index')->withSuccess('Appointment canceled!');
     }
 
     /**
@@ -161,13 +147,13 @@ class AppointmentController extends Controller
      */
     public function confirm(int $id)
     {
-        $confirmReponse = $this->appointmentService->confirm($id);
+        $confirmResponse = $this->appointmentService->confirm($id);
 
-        if (!$confirmReponse->success) {
-            return redirect()->route('dashboard')->withError('Erro ao confirmar consulta');
+        if (!$confirmResponse->success) {
+            return redirect()->route('dashboard')->withError('Error confirming appointment');
         }
 
-        return redirect()->route('dashboard')->withSuccess('Consulta confirmada!');
+        return redirect()->route('dashboard')->withSuccess('Appointment confirmed!');
     }
 
     /**
@@ -178,12 +164,12 @@ class AppointmentController extends Controller
      */
     public function destroy(int $id)
     {
-        $destroyReponse = $this->appointmentService->destroy($id);
+        $destroyResponse = $this->appointmentService->destroy($id);
 
-        if (!$destroyReponse->success) {
-            return redirect()->route('appointments.index')->withError('Erro ao deletar consulta');
+        if (!$destroyResponse->success) {
+            return redirect()->route('appointments.index')->withError('Error deleting appointment');
         }
 
-        return redirect()->route('appointments.index')->withSuccess('Consulta deletada!');
+        return redirect()->route('appointments.index')->withSuccess('Appointment deleted!');
     }
 }

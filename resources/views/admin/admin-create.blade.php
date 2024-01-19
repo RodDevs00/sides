@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', '| Administrador')
+@section('title', '| Administrator')
 @section('sidebar_admins', 'active')
 
 @section('content')
@@ -15,12 +15,12 @@
                             <div class="row align-items-center">
                                 <div class="col-md-12">
                                     <div class="page-header-title">
-                                        <h5 class="m-b-10">Administrador</h5>
+                                        <h5 class="m-b-10">Administrator</h5>
                                     </div>
                                     <ul class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="{{ route('dashboard') }}"><i class="feather icon-home"></i></a></li>
-                                        <li class="breadcrumb-item"><a href="{{ route('admins.index') }}">Administradores</a></li>
-                                        <li class="breadcrumb-item"><a href="javascript:">Administrador</a></li>
+                                        <li class="breadcrumb-item"><a href="{{ route('admins.index') }}">Administrators</a></li>
+                                        <li class="breadcrumb-item"><a href="javascript:">Administrator</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -34,7 +34,7 @@
                                 <div class="col-sm-12">
                                     <div class="card User-Activity">
                                         <div class="card-header">
-                                            <h5>Novo Administrador</h5>
+                                            <h5>New Administrator</h5>
                                         </div>
                                         <div class="card-block pb-0">
                                             <form class="link-form" action='{{ route('admins.store') }}' method='POST' enctype="multipart/form-data">
@@ -45,11 +45,11 @@
                                                 <div class="controls" style="display: none;">
                                                     <input type="file" name="image"/>
                                                 </div>
-                                                <input id='admin-name' class='form-control' type='text' name='name' placeholder="Nome" required>
+                                                <input id='admin-name' class='form-control' type='text' name='name' placeholder="Name" required>
                                                 <input id='admin-email' class='form-control mt-3' type='text' name='email' placeholder="Email" required>
-                                                <input id='admin-password' class='form-control mt-3' type='password' name='password' placeholder="Senha" required>
+                                                <input id='admin-password' class='form-control mt-3' type='password' name='password' placeholder="Password" required>
                                                 <br>
-                                                <button class='btn btn-outline-primary' type='submit'>Enviar</button>
+                                                <button class='btn btn-outline-primary' type='submit'>Submit</button>
                                                 <br>
                                             </form>
                                         </div>

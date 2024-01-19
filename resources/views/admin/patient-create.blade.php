@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', '| Paciente')
+@section('title', '| Patient')
 @section('sidebar_patients', 'active')
 
 @section('content')
@@ -15,12 +15,12 @@
                             <div class="row align-items-center">
                                 <div class="col-md-12">
                                     <div class="page-header-title">
-                                        <h5 class="m-b-10">Paciente</h5>
+                                        <h5 class="m-b-10">Patient</h5>
                                     </div>
                                     <ul class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="{{ route('dashboard') }}"><i class="feather icon-home"></i></a></li>
-                                        <li class="breadcrumb-item"><a href="{{ route('patients.index') }}">Pacientes</a></li>
-                                        <li class="breadcrumb-item"><a href="javascript:">Paciente</a></li>
+                                        <li class="breadcrumb-item"><a href="{{ route('patients.index') }}">Patients</a></li>
+                                        <li class="breadcrumb-item"><a href="javascript:">Patient</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -34,7 +34,7 @@
                                 <div class="col-sm-12">
                                     <div class="card User-Activity">
                                         <div class="card-header">
-                                            <h5>Novo Paciente</h5>
+                                            <h5>New Patient</h5>
                                         </div>
                                         <div class="card-block pb-0">
                                             <form class="link-form" action='{{ route('patients.store') }}' method='POST' enctype="multipart/form-data">
@@ -45,14 +45,14 @@
                                                 <div class="controls" style="display: none;">
                                                     <input type="file" name="image"/>
                                                 </div>
-                                                <input id='patient-name' class='form-control' type='text' name='name' placeholder="Nome" required>
+                                                <input id='patient-name' class='form-control' type='text' name='name' placeholder="Name" required>
                                                 <input id='patient-email' class='form-control mt-3' type='text' name='email' placeholder="Email" required>
-                                                <input id='patient-password' class='form-control mt-3' type='password' name='password' placeholder="Senha" required>
+                                                <input id='patient-password' class='form-control mt-3' type='password' name='password' placeholder="Password" required>
                                                 <input class='form-control mt-3' type='text' name='social' placeholder="CPF">
                                                 <div class="form-group mt-2">
-                                                    <label for="blood-type">Tipo Sanguíneo</label>
+                                                    <label for="blood-type">Blood Type</label>
                                                     <select class="form-control" id="blood-type" name="blood">
-                                                        <option value="">Selectionar</option>
+                                                        <option value="">Select</option>
                                                         <option value="A+">A+</option>
                                                         <option value="A-">A-</option>
                                                         <option value="B+">B+</option>
@@ -64,7 +64,7 @@
                                                     </select>
                                                 </div>
                                                 <br>
-                                                <button class='btn btn-outline-primary' type='submit'>Enviar</button>
+                                                <button class='btn btn-outline-primary' type='submit'>Submit</button>
                                                 <br>
                                             </form>
                                         </div>

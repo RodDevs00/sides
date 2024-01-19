@@ -49,10 +49,8 @@
                                                         <div class="card hover-md" onclick="location.href='{{ route('doctors.show', $doctor->id) }}'">
                                                             <div class="card-block">
                                                                 <div class="row align-items-center justify-content-center">
-                                                                    <div class="col-auto">
-                                                                        <img class="img-fluid rounded-circle" style="width:80px;" src="/img/pictures/{{ $doctor->image }}" alt="doctor">
-                                                                    </div>
                                                                     <div class="col">
+                                                                        <img class="img-fluid " style="width:100px;" src="/img/pictures/{{ $doctor->image }}" alt="doctor">
                                                                         <h5>{{ $doctor->name }}</h5>
                                                                         <span>{{ $doctor->doctor->specialty ?? 'General' }}</span>
                                                                     </div>
@@ -75,4 +73,3 @@
     </div>
     <!-- [ Main Content ] end -->
 @endsection
-    

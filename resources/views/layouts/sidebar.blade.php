@@ -11,7 +11,7 @@
         <div class="navbar-content scroll-div">
             <ul class="nav pcoded-inner-navbar">
                 <li class="nav-item pcoded-menu-caption">
-                    <label>Menusss</label>
+                    <label>Menus</label>
                 </li>
                 <li data-username="Dashboard" class="nav-item @yield('sidebar_dashboard')">
                     <a href="{{ route('dashboard') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Dashboard</span></a>
@@ -48,8 +48,9 @@
     <div class="navbar-wrapper">
         <div class="navbar-brand header-logo">
             <a href="{{ route('dashboard') }}" class="b-brand">
-                <img class="if-logo-img" src="{{ asset('img/landing/logo-white.png') }}">
-                <span class="b-title">MedMazza</span>
+                <img class="if-logo-img" src="{{ asset('img/landing/balais.png') }}">
+                
+                <span class="b-title" style="font-size:14px;">Balais Doctors Infirmary</span>
             </a>
             <a class="mobile-menu" id="mobile-collapse" href="javascript:"><span></span></a>
         </div>
