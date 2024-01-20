@@ -21,7 +21,7 @@
                 <li data-username="Appointments" class="nav-item @yield('sidebar_appointments')">
                     <a href="{{ route('appointments.index') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-calendar"></i></span><span class="pcoded-mtext">Appointments</span></a>
                 </li>
-                @if ($user->type !== 'doctor')
+                @if ($user->type !== 'doctor'&& $user->type !== 'secretary')
                     <li data-username="Doctors" class="nav-item @yield('sidebar_doctors')">
                         <a href="{{ route('doctors.index') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-users"></i></span><span class="pcoded-mtext">Doctors</span></a>
                     </li>
@@ -37,6 +37,11 @@
                         <a href="{{ route('secretaries.index') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-users"></i></span><span class="pcoded-mtext">Secretaries</span></a>
                     </li>
                 @endif
+                @if ($user->type === 'secretary')
+                <li data-username="Patients" class="nav-item @yield('sidebar_patients')">
+                        <a href="{{ route('patients.index') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-user"></i></span><span class="pcoded-mtext">Patients</span></a>
+                    </li>
+                    @endif   
                 <li data-username="Configuration" class="nav-item @yield('sidebar_config')">
                     <a href="{{ route('users.edit', $user->id) }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-settings"></i></span><span class="pcoded-mtext">Settings</span></a>
                 </li>

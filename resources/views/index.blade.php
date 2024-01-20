@@ -1,14 +1,11 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="en">
     <head>
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="description" content="Nosso principal objetivo é que nossos pacientes encontrem o médico perfeito e agende uma consulta do modo mais fácil possível. Essa jornada precisa ser agradável, por isso sempre estamos dispostos a ajudar." />
-        <meta name="keywords" content="medico, agendar, consulta, online, agendar consulta, clinica"/>
-        <meta name="author" content="Eduardo Nascimento"/>
         <title>BALAIS DOCTORS INFIRMARY</title>
-        <link rel="icon" href="{{ asset('img/landing/favicon.png') }}">
+        <link rel="icon" href="{{ asset('img/landing/balais.png') }}">
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="{{ asset('css/landing/bootstrap.min.css') }}">
         <!-- animate CSS -->
@@ -35,7 +32,7 @@
                 <div class="row align-items-center">
                     <div class="col-lg-12">
                         <nav class="navbar navbar-expand-lg navbar-light">
-                            <a class="navbar-brand" href="{{ route('index') }}"> <img src="{{ asset('img/landing/balais.jpg') }}"
+                            <a class="navbar-brand" href="{{ route('index') }}"> <img src="{{ asset('img/landing/balais.png') }}"
                                     alt="logo" style="width: 50px;"> Balais Doctors Infirmary
                             </a>
                             <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -56,9 +53,7 @@
                                     <li class="nav-item">
                                         <a class="nav-link" href="#services">Services</a>
                                     </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#doctors">Doctors</a>
-                                    </li>
+                                   
                                 </ul>
                             </div>
                             <a class="btn_2 d-none d-lg-block" href="{{ route('login') }}">Login</a>
@@ -74,7 +69,7 @@
         <section class="banner_part">
             <div class="container">
                 <div class="row align-items-center">
-                    <div class="col-lg-5 col-xl-5">
+                    <div class="col-lg-5 col-xl-6">
                         <div class="banner_text">
                             <div class="banner_text_iner">
                                 <h1>Balais Doctors Infirmary </h1>
@@ -84,9 +79,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-7">
-                        <div class="banner_img">
-                            <img src="{{ asset('img/landing/doctors1.png') }}" alt="">
+                    <div class="col-lg-6">
+                        <div class="banner_img ml-5">
+                            <img src="{{ asset('img/landing/balais.png') }}" alt="">
                         </div>
                     </div>
                 </div>
@@ -185,56 +180,7 @@
         </section>
         <!-- feature_part start-->
 
-        <!-- our depertment part start-->
-        <section class="our_depertment section_padding" id="doctors">
-            <div class="container">
-                <div class="row justify-content-center text-center">
-                    <div class="col-xl-12">
-                        <div class="depertment_content">
-                            <div class="row justify-content-center">
-                                <div class="col-xl-8">
-                                    <h2>Nossos Médicos</h2>
-                                    <div class="row">
-                                        <div class="col-lg-4 col-sm-4">
-                                            <img class="img-shape" src="{{ asset('img/pictures/1.jpg') }}" alt="doctor">
-                                            <h3>Dra. Adriana Galvão</h3>
-                                            <p>Cardiologista</p>
-                                        </div>
-                                        <div class="col-lg-4 col-sm-4">
-                                            <img class="img-shape" src="{{ asset('img/pictures/2.jpg') }}" alt="doctor">
-                                            <h3>Dr. Manoel Corte Real</h3>
-                                            <p>Pediatra</p>
-                                        </div>
-                                        <div class="col-lg-4 col-sm-4">
-                                            <img class="img-shape" src="{{ asset('img/pictures/3.jpg') }}" alt="doctor">
-                                            <h3>Dra. Cecília Nascimento</h3>
-                                            <p>Oftalmologista</p>
-                                        </div>
-                                        <div class="col-lg-4 col-sm-4">
-                                            <img class="img-shape" src="{{ asset('img/pictures/4.jpg') }}" alt="doctor">
-                                            <h3>Dr. Matheus Novaes</h3>
-                                            <p>Ortopedista</p>
-                                        </div>
-                                        <div class="col-lg-4 col-sm-4">
-                                            <img class="img-shape" src="{{ asset('img/pictures/5.jpg') }}" alt="doctor">
-                                            <h3>Dra. Maria Conceição</h3>
-                                            <p>Pediatra</p>
-                                        </div>
-                                        <div class="col-lg-4 col-sm-4">
-                                            <img class="img-shape" src="{{ asset('img/pictures/6.jpg') }}" alt="doctor">
-                                            <h3>Dr. Francisco Benício Cardoso</h3>
-                                            <p>Ortopedista</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- our depertment part end-->
+        
 
         <!-- footer part start-->
         <footer class="footer-area">
