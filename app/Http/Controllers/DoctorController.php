@@ -86,6 +86,7 @@ class DoctorController extends Controller
 
         if (!$storeResponse->success) {
             return redirect(route('doctors.index'))->withError('Error creating user!');
+            
         }
 
         return redirect(route('doctors.index'))->withSuccess('User created successfully!');

@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Doctor;
 use App\Models\Patient;
+use App\Models\Secretary; // Add the missing import for Secretary
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -31,21 +32,21 @@ class UserService
                 'password'  => Hash::make($request->password)
             ]);
 
-            // Verifica se informou o arquivo e se é válido
+            // Check if the file is provided and valid
             if ($request->hasFile('image') && $request->file('image')->isValid()) {
-                // Define um aleatório para o arquivo baseado no timestamps atual
+                // Generate a random name for the file based on the current timestamp
                 $name = Str::random(6);
                 $extension = $request->image->extension();
                 $nameFile = "{$name}.{$extension}";
 
-                // Faz o upload:
+                // Perform the upload
                 $upload = $request->image->storeAs('img/pictures', $nameFile);
 
-                // Verifica se NÃO deu certo o upload (Redireciona de volta)
+                // If the upload fails, return with an error
                 if (!$upload) {
                     return redirect()
                         ->back()
-                        ->withError('Falha ao fazer upload da imagem')
+                        ->withError('Failed to upload the image')
                         ->withInput();
                 }
 
@@ -63,6 +64,19 @@ class UserService
                 $patient->blood_type = $request->blood;
                 $patient->social_number = $request->social;
                 $patient->save();
+            }
+
+            if ($type === 'secretary') {
+                Secretary::create([
+                    'user_id' => $user->id,
+                    // Add additional fields for Secretary model here
+                ]);
+
+                $user->refresh();
+
+                $secretary = $user->secretary;
+                // Populate additional fields for Secretary model here
+                $secretary->save();
             }
 
             if ($type === 'doctor') {
@@ -83,7 +97,7 @@ class UserService
         } catch (\Throwable $th) {
             return new ServiceResponse(
                 false,
-                'Erro ao editar usuário!',
+                'Error creating user!',
                 null,
                 $th
             );
@@ -91,7 +105,7 @@ class UserService
 
         return new ServiceResponse(
             true,
-            'Usuário editado com sucesso!',
+            'User created successfully!',
             $user
         );
     }
@@ -115,21 +129,21 @@ class UserService
                 $user->refresh();
             }
 
-            // Verifica se informou o arquivo e se é válido
+            // Check if the file is provided and valid
             if ($request->hasFile('image') && $request->file('image')->isValid()) {
-                // Define um aleatório para o arquivo baseado no timestamps atual
+                // Generate a random name for the file based on the current timestamp
                 $name = Str::random(6);
                 $extension = $request->image->extension();
                 $nameFile = "{$name}.{$extension}";
 
-                // Faz o upload:
+                // Perform the upload
                 $upload = $request->image->storeAs('img/pictures', $nameFile);
 
-                // Verifica se NÃO deu certo o upload (Redireciona de volta)
+                // If the upload fails, return with an error
                 if (!$upload) {
                     return redirect()
                         ->back()
-                        ->withError('Falha ao fazer upload da imagem')
+                        ->withError('Failed to upload the image')
                         ->withInput();
                 }
 
@@ -154,7 +168,7 @@ class UserService
         } catch (\Throwable $th) {
             return new ServiceResponse(
                 false,
-                'Erro ao editar usuário!',
+                'Error editing user!',
                 null,
                 $th
             );
@@ -162,7 +176,7 @@ class UserService
 
         return new ServiceResponse(
             true,
-            'Usuário editado com sucesso!',
+            'User edited successfully!',
             $user
         );
     }
@@ -175,7 +189,7 @@ class UserService
         } catch (\Throwable $th) {
             return new ServiceResponse(
                 false,
-                'Erro ao remover usuário!',
+                'Error removing user!',
                 null,
                 $th
             );
@@ -183,7 +197,7 @@ class UserService
 
         return new ServiceResponse(
             true,
-            'Usuário removido com sucesso!',
+            'User removed successfully!',
             $user
         );
     }

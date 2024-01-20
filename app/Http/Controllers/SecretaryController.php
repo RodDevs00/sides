@@ -43,7 +43,7 @@ class SecretaryController extends Controller
         $user = auth()->user();
 
         if ($user->type === 'admin') {
-            return view('admin.secretary-create', compact('user'));
+            return view('admin.secretaries-create', compact('user'));
         }
 
         abort(404);
@@ -88,7 +88,7 @@ class SecretaryController extends Controller
             return view('admin.secretary', compact('user', 'secretary'));
         }
 
-        return view('secretary', compact('user', 'secretary'));
+        return view('secretaries', compact('user', 'secretary'));
     }
 
     /**

@@ -35,13 +35,13 @@
                                         <div class="card-header">
                                             <h5>All Secretaries</h5>
                                             <div class="card-header-right">
-                                                <a href="" class="btn btn-icon btn-outline-primary">
+                                                <a href="{{ route('secretaries.create') }}" class="btn btn-icon btn-outline-primary">
                                                     <i class="feather icon-user-plus"></i>
                                                 </a>
                                             </div>
                                         </div>
                                         <div class="card-block text-center">
-                                            <table id="tb-patients" class="display" style="width:100%">
+                                            <table id="tb-secretary" class="display" style="width:100%">
                                                 <thead>
                                                     <tr>
                                                         <th>Image</th>
@@ -57,14 +57,14 @@
                                                                 <img
                                                                     class="rounded-circle"
                                                                     style="width:40px;"
-                                                                    src="{{ asset('img/pictures/' . $patient->image) }}"
+                                                                    src="{{ asset('img/pictures/' . $secretary->image) }}"
                                                                     alt="patient-image"
                                                                 >
                                                             </td>
                                                             <td>{{ $secretary->name }}</td>
                                                             <td>{{ $secretary->email }}</td>
                                                             <td>
-                                                                <a href="{{ route('patients.show', $patient->id) }}" class="btn btn-icon btn-outline-primary">
+                                                                <a href="{{ route('secretaries.show', $secretary->id) }}" class="btn btn-icon btn-outline-primary">
                                                                     <i class="feather icon-play"></i>
                                                                 </a>
                                                             </td>
@@ -85,5 +85,10 @@
     </div>
     <!-- [ Main Content ] end -->
 
-    
+    <script src="{{ asset('plugins/datatables/datatables.min.js') }}" defer></script>
+    <script>
+        $(document).ready(function() {
+            $('#tb-secretary').DataTable();
+        } );
+    </script>
 @endsection
