@@ -4,23 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-use App\Http\Services\DoctorService;
 use App\Http\Services\UserService;
 
-class DoctorController extends Controller
+class SecretaryController extends Controller
 {
     protected $userModel;
     protected $userService;
-    protected $doctorService;
 
     public function __construct(
         User $userModel,
-        UserService $userService,
-        DoctorService $doctorService
+        UserService $userService
     ) {
         $this->userModel = $userModel;
         $this->userService = $userService;
-        $this->doctorService = $doctorService;
     }
 
     /**
@@ -31,24 +27,10 @@ class DoctorController extends Controller
     public function index()
     {
         $user = auth()->user();
-        $doctors = User::where('type', 'doctor')->orderBy('name')->get();
+        $secretaries = User::where('type', 'secretary')->orderBy('name')->get();
 
-        return view('doctors', compact('user', 'doctors'));
-      
-
-    }
-
-    public function getAvailableByDate(Request $request)
-    {
-        $serviceResponse = $this->doctorService->getAvailableByDate(
-            $request->date
-        );
-
-        if (!$serviceResponse->success) {
-            return response()->json($serviceResponse->errors);
-        }
-
-        return response()->json($serviceResponse->data);
+        return view('admin.secretaries', compact('user', 'secretaries'));
+        
     }
 
     /**
@@ -61,8 +43,7 @@ class DoctorController extends Controller
         $user = auth()->user();
 
         if ($user->type === 'admin') {
-            return view('admin.doctor-create', compact('user'));
-            
+            return view('admin.secretary-create', compact('user'));
         }
 
         abort(404);
@@ -79,16 +60,16 @@ class DoctorController extends Controller
         $user = auth()->user();
 
         if ($user->type !== 'admin') {
-            return redirect(route('doctors.index'))->withError('User without permissions!');
+            return redirect(route('secretaries.index'))->withError('User without permissions!');
         }
 
-        $storeResponse = $this->userService->store($request, 'doctor');
+        $storeResponse = $this->userService->store($request, 'secretary');
 
         if (!$storeResponse->success) {
-            return redirect(route('doctors.index'))->withError('Error creating user!');
+            return redirect(route('secretaries.index'))->withError('Error creating user!');
         }
 
-        return redirect(route('doctors.index'))->withSuccess('User created successfully!');
+        return redirect(route('secretaries.index'))->withSuccess('User created successfully!');
     }
 
     /**
@@ -101,13 +82,13 @@ class DoctorController extends Controller
     {
         $user = auth()->user();
 
-        $doctor = $this->userModel->find($id);
+        $secretary = $this->userModel->find($id);
 
         if ($user->type === 'admin') {
-            return view('admin.doctor', compact('user', 'doctor'));
+            return view('admin.secretary', compact('user', 'secretary'));
         }
 
-        return view('doctor', compact('user', 'doctor'));
+        return view('secretary', compact('user', 'secretary'));
     }
 
     /**
@@ -122,10 +103,10 @@ class DoctorController extends Controller
         $updateResponse = $this->userService->update($id, $request);
 
         if (!$updateResponse->success) {
-            return redirect(route('doctors.show', $id))->withError('Error editing user!');
+            return redirect(route('secretaries.show', $id))->withError('Error editing user!');
         }
 
-        return redirect(route('doctors.show', $id))->withSuccess('User edited successfully!');
+        return redirect(route('secretaries.show', $id))->withSuccess('User edited successfully!');
     }
 
     /**
@@ -139,15 +120,15 @@ class DoctorController extends Controller
         $user = auth()->user();
 
         if ($user->type !== 'admin') {
-            return redirect(route('doctors.index'))->withError('User without permissions!');
+            return redirect(route('secretaries.index'))->withError('User without permissions!');
         }
 
         $destroyResponse = $this->userService->destroy($id);
 
         if (!$destroyResponse->success) {
-            return redirect(route('doctors.index'))->withError('Error removing user!');
+            return redirect(route('secretaries.index'))->withError('Error removing user!');
         }
 
-        return redirect(route('doctors.index'))->withSuccess('User removed successfully!');
+        return redirect(route('secretaries.index'))->withSuccess('User removed successfully!');
     }
 }
