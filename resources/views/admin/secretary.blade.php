@@ -46,11 +46,10 @@
                                                     <input type="file" name="image"/>
                                                 </div>
                                                 <input name="_method" type="hidden" value="PUT">
-                                                <input id='patient-name' class='form-control' type='text' name='name' placeholder="Name" value='{{ $secretary->name }}'>
-                                                <input id='patient-name' class='form-control' type='text' name='email' placeholder="Name" value='{{ $secretary->email }}'>
+                                                <input id='secretary-name' class='form-control' type='text' name='name' placeholder="Name" value='{{ $secretary->name }}'>
+                                                <input  class='form-control mt-3' type='text' name='email' placeholder="Email" value='{{ $secretary->email }}'>
                                                 
-                                                
-                                                
+                                                                            
                                                 <br>
                                                 <button class='btn btn-outline-primary' type='submit'>Edit</button>
                                             </form>

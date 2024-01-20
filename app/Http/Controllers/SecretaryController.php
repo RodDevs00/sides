@@ -99,7 +99,9 @@ class SecretaryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, int $id)
+    
     {
+        // dd($request->all());
         $updateResponse = $this->userService->update($id, $request);
 
         if (!$updateResponse->success) {

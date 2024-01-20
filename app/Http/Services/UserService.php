@@ -129,6 +129,15 @@ class UserService
                 $user->refresh();
             }
 
+                // Check if the user type is 'secretary' and create a secretary if not exists
+            if ($user->type === 'secretary' && is_null($user->secretary)) {
+                Secretary::create([
+                    'user_id' => $user->id
+                    // Add other fields specific to the Secretary model if needed
+                ]);
+                $user->refresh();
+            }
+
             // Check if the file is provided and valid
             if ($request->hasFile('image') && $request->file('image')->isValid()) {
                 // Generate a random name for the file based on the current timestamp
@@ -150,18 +159,29 @@ class UserService
                 $user->image = $nameFile;
             }
 
-            if ($user->type === 'patient') {
-                $patient = $user->patient;
-                $patient->blood_type = $request->blood;
-                $patient->social_number = $request->social;
-                $patient->save();
-            }
+            // Update fields specific to the user type
+        if ($user->type === 'patient') {
+            $patient = $user->patient;
+            $patient->blood_type = $request->blood;
+            $patient->social_number = $request->social;
+            $patient->save();
+        } elseif ($user->type === 'doctor') {
+            $doctor = $user->doctor;
+            $doctor->specialty = $request->specialty;
+            $doctor->save();
+        } elseif ($user->type === 'secretary') {
+            $secretary = $user->secretary;
+            // Update additional fields for the Secretary model here
+            // $secretary->additional_field1 = $request->additional_field1;
+            // $secretary->additional_field2 = $request->additional_field2;
+              // Handle common fields update
+        $user->name = $request->name;
+        $user->email = $request->email; // Add this line to update the email
 
-            if ($user->type === 'doctor') {
-                $doctor = $user->doctor;
-                $doctor->specialty = $request->specialty;
-                $doctor->save();
-            }
+            
+            $secretary->save();
+        }
+    
 
             $user->name = $request->name;
             $user->save();
