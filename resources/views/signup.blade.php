@@ -6,7 +6,7 @@
     <meta name='csrf-token' content='{{ csrf_token() }}'>
 
     <title>Signup</title>
-    <link rel="icon" href="{{ asset('img/landing/favicon.png') }}">
+    <link rel="icon" href="{{ asset('img/landing/balais.png') }}">
     <!-- fontawesome icon -->
     <link rel="stylesheet" href="{{ asset('fonts/fontawesome/css/fontawesome-all.min.css') }}">
     <!-- material design icon -->

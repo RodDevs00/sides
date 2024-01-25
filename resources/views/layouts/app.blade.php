@@ -5,7 +5,7 @@
         <meta name='csrf-token' content='{{ csrf_token() }}'>
 
         <title>Balais Doctors Infirmary @yield('title')</title>
-        <link rel="icon" href="{{ asset('img/landing/balais.jpg') }}">
+        <link rel="icon" href="{{ asset('img/landing/balais.png') }}">
 
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
         <link rel="stylesheet" href="{{ asset('plugins/datatables/datatables.min.css') }}">

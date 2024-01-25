@@ -170,20 +170,14 @@ class UserService
             $doctor->specialty = $request->specialty;
             $doctor->save();
         } elseif ($user->type === 'secretary') {
-            $secretary = $user->secretary;
-            // Update additional fields for the Secretary model here
-            // $secretary->additional_field1 = $request->additional_field1;
-            // $secretary->additional_field2 = $request->additional_field2;
-              // Handle common fields update
-        $user->name = $request->name;
-        $user->email = $request->email; // Add this line to update the email
-
-            
+            $secretary = $user->secretary;  
+           
             $secretary->save();
         }
     
-
+             
             $user->name = $request->name;
+           
             $user->save();
         } catch (\Throwable $th) {
             return new ServiceResponse(

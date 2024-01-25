@@ -109,7 +109,7 @@ class UserController extends Controller
         $updateResponse = $this->userService->update($user->id, $request);
 
         if (!$updateResponse->success) {
-            return redirect(route('users.edit', $user->id))->withError('Error editing user!');
+            return redirect(route('users.edit', $user->id))->withError('Errors editing user!');
         }
 
         return redirect(route('users.edit', $user->id))->withSuccess('User edited successfully!');

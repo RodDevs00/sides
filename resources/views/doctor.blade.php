@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', '| Agendamentos')
+@section('title', '| Doctors')
 @section('sidebar_doctors', 'active')
 
 @section('content')
@@ -15,12 +15,12 @@
                             <div class="row align-items-center">
                                 <div class="col-md-12">
                                     <div class="page-header-title">
-                                        <h5 class="m-b-10">Médico</h5>
+                                        <h5 class="m-b-10">Doctors</h5>
                                     </div>
                                     <ul class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="{{ route('dashboard') }}"><i class="feather icon-home"></i></a></li>
                                         <li class="breadcrumb-item"><a href="{{ route('doctors.index') }}">Doctors</a></li>
-                                        <li class="breadcrumb-item"><a href="javascript:">Médico</a></li>
+                                        <li class="breadcrumb-item"><a href="javascript:">Doctor</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -34,7 +34,7 @@
                                 <div class="col-sm-12">
                                     <div class="card User-Activity">
                                         <div class="card-header">
-                                            <h5>Agende sua consulta</h5>
+                                            <h5>Schedule Your Consultation</h5>
                                         </div>
                                         <div class="card-block pb-5" style="height: 700px;">
                                             <div class="row align-items-center justify-content-center mb-4">
@@ -71,7 +71,7 @@
             var calendar = new FullCalendar.Calendar(calendarEl, {
                 height: 'calc(100% - 80px)',
                 expandRows: true,
-                locale: 'pt-br',
+                locale: 'en',
                 initialView: 'timeGridWeek',
                 events: "{{ route('appointments.doctor.load', ['id' => $doctor->id]) }}",
                 allDaySlot: false,
@@ -96,8 +96,8 @@
                     if (info.date.getHours() === 13) return;
 
                     Swal.fire({
-                        title: 'Tem certeza?',
-                        text: `Agendar consulta com {{ $doctor->name }}?`,
+                        title: 'Are you sure?',
+                        text: `Schedule an appointment with {{ $doctor->name }}?`,
                         icon: 'warning',
                         showCancelButton: true,
                         customClass: {
@@ -105,8 +105,8 @@
                             cancelButton: 'btn btn-outline-danger'
                         },
                         buttonsStyling: false,
-                        confirmButtonText: 'Sim, pode agendar!',
-                        cancelButtonText: 'Cancelar',
+                        confirmButtonText: 'Yes, you can schedule!',
+                        cancelButtonText: 'Cancel',
                         reverseButtons: true
                     }).then((result) => {
                         if (result.value) {

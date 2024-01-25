@@ -45,7 +45,7 @@
                                                     <input type="file" name="image"/>
                                                 </div>
                                                 <input name="_method" type="hidden" value="PUT">
-                                                <input id='user-name' class='form-control' type='text' name='name' placeholder="Name" value='{{ $user->name }}'>
+                                                <input class='form-control' type='text' name='name' placeholder="Name" value='{{ $user->name }}'>
                                                 @if ($user->type === 'patient')
                                                     <input class='form-control mt-3' type='text' name='social' placeholder="CPF" value='{{ $user->patient->social_number ?? '' }}'>
                                                     <div class="form-group mt-2">

@@ -19,13 +19,16 @@ class DashboardController extends Controller
     {
         $user = auth()->user();
 
-        if ($user->type === 'admin') {
+        if ($user->type === 'admin' || $user->type === 'secretary') {
             $appointments = $this->appointmentService->getPendingAppointments();
             $confirmed = $this->appointmentService->getConfirmedAppointments(null, true);
             $ended = $this->appointmentService->getEndedAppointments(null, null, true);
-
-            return view('admin.dashboard', compact('user', 'appointments', 'confirmed', 'ended'));
+        
+            $view = ($user->type === 'admin') ? 'admin.dashboard' : 'admin.sdashboard';
+        
+            return view($view, compact('user', 'appointments', 'confirmed', 'ended'));
         }
+        
 
         $nextDate = $this->appointmentService->getNextAppointmentDate();
         $confirmed = $this->appointmentService->getConfirmedAppointments($user->id, true);

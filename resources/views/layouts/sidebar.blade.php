@@ -41,7 +41,10 @@
                 <li data-username="Patients" class="nav-item @yield('sidebar_patients')">
                         <a href="{{ route('patients.index') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-user"></i></span><span class="pcoded-mtext">Patients</span></a>
                     </li>
-                    @endif   
+                    @endif  
+                <li data-username="Services" class="nav-item @yield('sidebar_services')">
+                    <a href="{{ route('service.index') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-book"></i></span><span class="pcoded-mtext">Services</span></a>
+                </li> 
                 <li data-username="Configuration" class="nav-item @yield('sidebar_config')">
                     <a href="{{ route('users.edit', $user->id) }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-settings"></i></span><span class="pcoded-mtext">Settings</span></a>
                 </li>

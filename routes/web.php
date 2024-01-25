@@ -23,5 +23,6 @@ Route::middleware('auth')->group(function () {
     Route::resource('patients', 'PatientController');
     Route::resource('admins', 'UserController');
     Route::resource('secretaries', 'SecretaryController');
+    Route::resource('service', 'ServicesController');
     Route::get('/users/history', 'UserController@history')->name('users.history');
 });

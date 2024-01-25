@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', '| Administrador')
+@section('title', '| Administrator')
 @section('sidebar_admins', 'active')
 
 @section('content')
@@ -15,12 +15,12 @@
                             <div class="row align-items-center">
                                 <div class="col-md-12">
                                     <div class="page-header-title">
-                                        <h5 class="m-b-10">Administrador</h5>
+                                        <h5 class="m-b-10">Administrator</h5>
                                     </div>
                                     <ul class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="{{ route('dashboard') }}"><i class="feather icon-home"></i></a></li>
-                                        <li class="breadcrumb-item"><a href="{{ route('admins.index') }}">Administradores</a></li>
-                                        <li class="breadcrumb-item"><a href="javascript:">Administrador</a></li>
+                                        <li class="breadcrumb-item"><a href="{{ route('admins.index') }}">Administrators</a></li>
+                                        <li class="breadcrumb-item"><a href="javascript:">Administrators</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -50,7 +50,7 @@
                                             <form action="{{ route('admins.destroy', $admin->id) }}" method="post" class="mb-3">
                                                 {{ csrf_field() }}
                                                 <input name="_method" type="hidden" value="DELETE">
-                                                <button class='btn btn-block btn-outline-danger' type='submit'>Remover</button>
+                                                <button class='btn btn-block btn-outline-danger' type='submit'>Remove</button>
                                             </form>
                                         </div>
                                     </div>

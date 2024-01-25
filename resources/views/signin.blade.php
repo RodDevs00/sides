@@ -6,7 +6,7 @@
     <meta name='csrf-token' content='{{ csrf_token() }}'>
 
     <title>Login</title>
-    <link rel="icon" href="{{ asset('img/landing/favicon.png') }}">
+    <link rel="icon" href="{{ asset('img/landing/balais.png') }}">
     <!-- fontawesome icon -->
     <link rel="stylesheet" href="{{ asset('fonts/fontawesome/css/fontawesome-all.min.css') }}">
     <!-- material design icon -->
@@ -37,7 +37,7 @@
                                             <input type="email" class="form-control" name="email" placeholder="Email">
                                         </div>
                                         <div class="input-group mb-4">
-                                            <input type="password" class="form-control" name="password" placeholder="Senha">
+                                            <input type="password" class="form-control" name="password" placeholder="Password">
                                         </div>
                                         <div class="form-group text-left">
                                             <div class="checkbox checkbox-fill d-inline">
