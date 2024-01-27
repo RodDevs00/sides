@@ -26,7 +26,7 @@ class SecretaryController extends Controller
      */
     public function index()
     {
-        $user = auth()->user();
+        $user = auth()->user();  
         $secretaries = User::where('type', 'secretary')->orderBy('name')->get();
 
         return view('admin.secretaries', compact('user', 'secretaries'));
@@ -68,7 +68,7 @@ class SecretaryController extends Controller
         if (!$storeResponse->success) {
             return redirect(route('secretaries.index'))->withError('Error creating user!');
         }
-
+        
         return redirect(route('secretaries.index'))->withSuccess('User created successfully!');
     }
 

@@ -87,6 +87,7 @@ class UserService
 
                 $doctor = $user->doctor;
                 $doctor->specialty = $request->specialty;
+                $doctor->roomName = $request->roomName;
                 $doctor->save();
             }
 
@@ -168,6 +169,7 @@ class UserService
         } elseif ($user->type === 'doctor') {
             $doctor = $user->doctor;
             $doctor->specialty = $request->specialty;
+            $doctor->roomName = $request->roomName;
             $doctor->save();
         } elseif ($user->type === 'secretary') {
             $secretary = $user->secretary;  

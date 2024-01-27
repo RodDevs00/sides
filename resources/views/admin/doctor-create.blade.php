@@ -49,6 +49,7 @@
                                                 <input id='doctor-email' class='form-control mt-3' type='text' name='email' placeholder="Email" required>
                                                 <input id='doctor-password' class='form-control mt-3' type='password' name='password' placeholder="Password" required>
                                                 <input class='form-control mt-3' type='text' name='specialty' placeholder="Specialty">
+                                                <input class='form-control mt-3' type='text' name='roomName' placeholder="Room Name (No spaces)">
                                                 <br>
                                                 <button class='btn btn-outline-primary' type='submit'>Submit</button>
                                                 <br>

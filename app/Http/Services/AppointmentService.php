@@ -218,7 +218,7 @@ class AppointmentService
         return $query
             ->get([
                 'appointments.id',
-                DB::raw('"Reservado" AS title'),
+                DB::raw('"Reserved" AS title'),
                 'start_date as start',
                 'end_date as end',
                 DB::raw('CONCAT("bg-c-gray border-none") AS classNames')
@@ -244,7 +244,7 @@ class AppointmentService
         } catch (\Throwable $th) {
             return new ServiceResponse(
                 false,
-                'Erro ao criar agendamento',
+                'Error creating schedule',
                 null,
                 $th
             );
@@ -252,7 +252,7 @@ class AppointmentService
 
         return new ServiceResponse(
             true,
-            'Agendamento criado com sucesso',
+            'Schedule created successfully',
             $appointment
         );
     }
@@ -276,7 +276,7 @@ class AppointmentService
             if (is_null($appointment)) {
                 return new ServiceResponse(
                     false,
-                    'Usuário não tem permissão para cancelar agendamento'
+                    'User is not allowed to cancel appointment'
                 );
             }
 
@@ -286,7 +286,7 @@ class AppointmentService
         } catch (\Throwable $th) {
             return new ServiceResponse(
                 false,
-                'Erro ao cancelar agendamento',
+                'Error canceling appointment',
                 null,
                 $th
             );
@@ -294,7 +294,7 @@ class AppointmentService
 
         return new ServiceResponse(
             true,
-            'Agendamento cancelado com sucesso',
+            'Appointment canceled successfully',
             $appointment
         );
     }
@@ -307,7 +307,7 @@ class AppointmentService
             if ($user->type !== 'admin') {
                 return new ServiceResponse(
                     false,
-                    'Usuário não tem permissão para confirmar agendamento'
+                    'User does not have permission to confirm appointment'
                 );
             }
 
@@ -318,7 +318,7 @@ class AppointmentService
         } catch (\Throwable $th) {
             return new ServiceResponse(
                 false,
-                'Erro ao confirmar agendamento',
+                'Error confirming appointment',
                 null,
                 $th
             );
@@ -326,7 +326,7 @@ class AppointmentService
 
         return new ServiceResponse(
             true,
-            'Agendamento confirmado com sucesso',
+            'Appointment confirmed successfully',
             $appointment
         );
     }
@@ -350,7 +350,7 @@ class AppointmentService
             if (is_null($appointment)) {
                 return new ServiceResponse(
                     false,
-                    'Usuário não tem permissão para deletar agendamento'
+                    'User does not have permission to delete schedule'
                 );
             }
 
@@ -358,7 +358,7 @@ class AppointmentService
         } catch (\Throwable $th) {
             return new ServiceResponse(
                 false,
-                'Erro ao deletar agendamento',
+                'Error when deleting schedule',
                 null,
                 $th
             );
@@ -366,7 +366,7 @@ class AppointmentService
 
         return new ServiceResponse(
             true,
-            'Agendamento deletar com sucesso',
+            'Deleted schedule successfully',
             $appointment
         );
     }

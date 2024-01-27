@@ -47,6 +47,7 @@
                                                         <th>Image</th>
                                                         <th>Name</th>
                                                         <th>Email</th>
+                                                        <th>Doctor</th>
                                                         <th>Edit</th>
                                                     </tr>
                                                 </thead>
@@ -63,6 +64,7 @@
                                                             </td>
                                                             <td>{{ $secretary->name }}</td>
                                                             <td>{{ $secretary->email }}</td>
+                                                            <td>{{ $secretary->doctors_id }}</td>
                                                             <td>
                                                                 <a href="{{ route('secretaries.show', $secretary->id) }}" class="btn btn-icon btn-outline-primary">
                                                                     <i class="feather icon-play"></i>

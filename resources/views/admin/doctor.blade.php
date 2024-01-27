@@ -48,6 +48,8 @@
                                                 <input name="_method" type="hidden" value="PUT">
                                                 <input id='doctor-name' class='form-control' type='text' name='name' placeholder="Name" value='{{ $doctor->name }}'>
                                                 <input class='form-control mt-3' type='text' name='specialty' placeholder="Specialization" value='{{ $doctor->doctor->specialty ?? '' }}'>
+                                                <input class='form-control mt-3' type='text' name='roomName' placeholder="Room Name (No space)" value='{{ $doctor->doctor->roomName ?? '' }}'>
+                                            
                                                 <br>
                                                 <button class='btn btn-outline-primary' type='submit'>Edit</button>
                                             </form>

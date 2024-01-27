@@ -10,10 +10,11 @@ class Doctor extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'user_id', 'specialty', 'birth_date'
+        'user_id', 'specialty', 'birth_date', 'roomName'
     ];
 
     protected $casts = [
         'birth_date' => 'datetime'
     ];
+    
 }

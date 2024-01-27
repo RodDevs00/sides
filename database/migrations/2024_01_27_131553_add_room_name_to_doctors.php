@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddSoftDeletesToServicesTable extends Migration
+class AddRoomNameToDoctors extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddSoftDeletesToServicesTable extends Migration
      */
     public function up()
     {
-        Schema::table('services', function (Blueprint $table) {
-            $table->softDeletes();
+        Schema::table('doctors', function (Blueprint $table) {
+            $table->string('roomName')->nullable();
         });
     }
 
@@ -25,8 +25,8 @@ class AddSoftDeletesToServicesTable extends Migration
      */
     public function down()
     {
-        Schema::table('services', function (Blueprint $table) {
-            $table->dropSoftDeletes();
+        Schema::table('doctors', function (Blueprint $table) {
+            $table->dropColumn('roomName');
         });
     }
 }

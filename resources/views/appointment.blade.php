@@ -3,7 +3,16 @@
 @section('title', '| Appointment')
 @section('sidebar_appointments', 'active')
 
+
 @section('content')
+<style>
+    #jitsi-container {
+    width: 100%;
+    height: 500px; /* Adjust the height as needed */
+}
+
+</style>
+
     <!-- [ Main Content ] start -->
     <div class="pcoded-main-container">
         <div class="pcoded-wrapper">
@@ -35,14 +44,21 @@
                                     <div class="card User-Activity">
                                         <div class="card-header">
                                             <h5>
-                                                {{
-                                                    $appointment->start_date->format('d/m H:i') .
-                                                    ' - ' .
-                                                    ($user->type === 'patient'
-                                                        ? $appointment->doctor->name
-                                                        : $appointment->patient->name)
-                                                }}
+                                                
+                                                    {{
+                                                        $appointment->start_date->format('d/m H:i') .
+                                                        ' - ' .
+                                                        ($user->type === 'patient'
+                                                            ? $appointment->doctor->name 
+                                                            : $appointment->patient->name) 
+                                                    }}
+    
                                             </h5>
+                                            <script>
+                                            // Pass the roomName from PHP to JavaScript
+                                            const roomName = @json($appointment->status);
+                                        </script>
+
                                         </div>
                                         <div class="card-block text-center">
                                             <div class="text-center m-b-30">
@@ -54,6 +70,7 @@
                                                     }}
                                                 </h5>
                                                 <span class="d-block mb-4">{{ $appointment->present()->status }}</span>
+                                                
                                                 <img
                                                     class="img-fluid rounded-circle"
                                                     style="width: 200px;max-width:100%;"
@@ -61,6 +78,9 @@
                                                     alt="doctor"
                                                 >
                                             </div>
+                                            @if ($appointment->status === 'confirmed')
+                                            <div id="jitsi-container"></div>
+                                            @endif
                                             <div class="row m-t-30">
                                                 <div class="col-md-6 col-lg-6">
                                                     <h5>{{ $appointment->start_date->format('d/m H:i') }}</h5>
@@ -93,4 +113,19 @@
         </div>
     </div>
     <!-- [ Main Content ] end -->
+    <script src="https://meet.jit.si/external_api.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const domain = 'meet.jit.si';
+        const options = {
+            roomName: roomName,
+            width: '100%',
+            height: '100%',
+            parentNode: document.querySelector('#jitsi-container'),
+        };
+
+        const api = new JitsiMeetExternalAPI(domain, options);
+    });
+</script>
+
 @endsection
