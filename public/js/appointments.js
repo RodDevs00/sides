@@ -33,21 +33,22 @@ document.addEventListener('DOMContentLoaded', function() {
             var html = '<div class="row">';
             apiResponse.forEach(doctor => {
                 html += `
-                    <div class="col-md-6 col-xl-6">
-                        <div class="card hover-md" onclick="setAppointment('${info.dateStr}', ${doctor.id}, '${doctor.name}')">
-                            <div class="card-block">
-                                <div class="row align-items-center justify-content-center">
-                                    <div class="col-auto">
-                                        <img class="img-fluid rounded-circle" style="width:80px;" src="/img/pictures/${doctor.image}" alt="doctor">
-                                    </div>
-                                    <div class="col">
-                                        <h5>${doctor.name}</h5>
-                                        <span>${doctor.specialty ?? 'General'}</span>
-                                    </div>
-                                </div>
+                <div class="col-md-6 col-xl-6">
+                <div class="card hover-md" onclick="setAppointment('${info.dateStr}', ${doctor.id}, '${doctor.name}', '${doctor.roomName}')">
+                    <div class="card-block">
+                        <div class="row align-items-center justify-content-center">
+                            <div class="col-auto">
+                                <img class="img-fluid rounded-circle" style="width:80px;" src="/img/pictures/${doctor.image}" alt="doctor">
+                            </div>
+                            <div class="col">
+                                <h5>${doctor.name}</h5>
+                                <span>${doctor.specialty ?? 'General'}</span>
+                                <span>${doctor.roomName}</span> <!-- Include roomName here -->
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
                 `;
             });
             html += '</div>';
@@ -64,11 +65,11 @@ document.addEventListener('DOMContentLoaded', function() {
     calendar.render();
 });
 
-function setAppointment(date, doctorId, doctorName) {
+function setAppointment(date, doctorId, doctorName, roomName) {
     Swal.close();
     Swal.fire({
         title: 'Are you sure?',
-        text: `Schedule an appointment with ${doctorName}?`,
+        text: `Schedule an appointment with ${doctorName} (${roomName})?`,
         icon: 'warning',
         showCancelButton: true,
         customClass: {
@@ -83,6 +84,7 @@ function setAppointment(date, doctorId, doctorName) {
         if (result.value) {
             $('#send_date').val(date);
             $('#send_doctor').val(doctorId);
+            $('#send_room').val(roomName);
             $('#send_form').submit();
         }
     });

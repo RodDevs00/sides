@@ -225,38 +225,42 @@ class AppointmentService
             ]);
     }
 
-    public function store(string $startDate, int $doctorId, ?int $patientId)
-    {
-        try {
-            $user = auth()->user();
+    // AppointmentService.php
 
-            $endDate = Carbon::parse($startDate)->addHours(1)->toDateTimeString();
-            $startDate = Carbon::parse($startDate)->toDateTimeString();
+public function store(string $startDate, int $doctorId, ?int $patientId, string $roomName)
+{
+    try {
+        $user = auth()->user();
 
-            $storeParams = new StoreServiceParams(
-                $patientId ?? $user->id,
-                $doctorId,
-                $startDate,
-                $endDate
-            );
+        $endDate = Carbon::parse($startDate)->addHours(1)->toDateTimeString();
+        $startDate = Carbon::parse($startDate)->toDateTimeString();
 
-            $appointment = $this->appointmentModel->create($storeParams->toArray());
-        } catch (\Throwable $th) {
-            return new ServiceResponse(
-                false,
-                'Error creating schedule',
-                null,
-                $th
-            );
-        }
+        $storeParams = new StoreServiceParams(
+            $patientId ?? $user->id,
+            $doctorId,
+            $startDate,
+            $endDate,
+            $roomName // Include roomName in the StoreServiceParams
+        );
 
+        $appointment = $this->appointmentModel->create($storeParams->toArray());
+    } catch (\Throwable $th) {
         return new ServiceResponse(
-            true,
-            'Schedule created successfully',
-            $appointment
+            false,
+            'Error creating schedule',
+            null,
+            $th
         );
     }
 
+    return new ServiceResponse(
+        true,
+        'Schedule created successfully',
+        $appointment
+    );
+}
+
+    
     public function cancel(int $appointmentId)
     {
         try {

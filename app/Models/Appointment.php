@@ -16,8 +16,9 @@ class Appointment extends Model
     protected $presenter = AppointmentPresenter::class;
 
     protected $fillable = [
-        'patient_id', 'doctor_id', 'start_date', 'end_date', 'status', 'color'
+        'patient_id', 'doctor_id', 'start_date', 'end_date', 'status', 'color','roomName', 
     ];
+    
 
     protected $casts = [
         'start_date' => 'datetime',

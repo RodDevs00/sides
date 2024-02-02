@@ -49,10 +49,12 @@
         </div>
     </div>
     <form id='send_form' action='{{ route('appointments.store') }}' method='POST' style='display:none'>
-        {{ csrf_field() }}
-        <input id='send_date' type='hidden' name='date' value=''>
-        <input id='send_doctor' type='hidden' name='doctor' value=''>
+    {{ csrf_field() }}
+    <input id='send_date' type='hidden' name='date' value=''>
+    <input id='send_doctor' type='hidden' name='doctor' value=''>
+    <input id='send_room' type='hidden' name='room' value=''> <!-- Add a hidden field for roomName -->
     </form>
+
     <script src="{{ asset('plugins/fullcalendar/main.min.js') }}"></script>
     <script src="{{ asset('plugins/fullcalendar/locales-all.min.js') }}"></script>
     <script src="{{ asset('js/appointments.js') }}"></script>

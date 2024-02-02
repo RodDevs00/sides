@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Appointment;
+use App\Models\Doctor;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use App\Http\Services\AppointmentService;
 
 class AppointmentController extends Controller
@@ -79,17 +81,48 @@ class AppointmentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        $storeResponse = $this->appointmentService->store($request->date, $request->doctor, $request->patient);
+   // AppointmentController.php
 
-        if (!$storeResponse->success) {
-            return redirect()->back()->withError('Error scheduling appointment');
-        }
-
-        return redirect()->back()->withSuccess('Appointment scheduled!');
-    }
-
+   public function store(Request $request)
+   {
+       try {
+           // Check for soft-deleted records as well
+           $doctor = Doctor::where('user_id', $request->doctor)->withTrashed()->firstOrFail();
+   
+           // Access the roomName attribute from the doctor record
+           $roomName = $doctor->roomName;
+   
+           // Pass all the required data to the AppointmentService
+           $storeResponse = $this->appointmentService->store(
+               $request->date,
+               $request->doctor,
+               $request->patient,
+               $roomName
+           );
+   
+           // Check the success status of the storeResponse
+           if (!$storeResponse->success) {
+               return redirect()->back()->withError('Error scheduling appointment');
+           }
+   
+           // Return a success response
+           return redirect()->back()->withSuccess('Appointment scheduled!');
+       } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+           // Log the exception
+           Log::error('ModelNotFoundException: ' . $e->getMessage());
+   
+           // Handle the exception and return an error response
+           return redirect()->back()->withError('Doctor not found');
+       } catch (\Exception $e) {
+           // Log the exception
+           Log::error('Exception: ' . $e->getMessage());
+   
+           // Return an error response in case of an exception
+           return redirect()->back()->withError('An unexpected error occurred');
+       }
+   }
+   
+                        
     /**
      * Display the specified resource.
      *

@@ -43,6 +43,7 @@
                                 <div class="col-sm-12">
                                     <div class="card User-Activity">
                                         <div class="card-header">
+                                        
                                             <h5>
                                                 
                                                     {{
@@ -51,12 +52,14 @@
                                                         ($user->type === 'patient'
                                                             ? $appointment->doctor->name 
                                                             : $appointment->patient->name) 
+                                                           
                                                     }}
     
                                             </h5>
                                             <script>
                                             // Pass the roomName from PHP to JavaScript
-                                            const roomName = @json($appointment->status);
+                                            const room  = @json($appointment->roomName);
+                                           
                                         </script>
 
                                         </div>
@@ -68,8 +71,11 @@
                                                             ? $appointment->doctor->name
                                                             : $appointment->patient->name
                                                     }}
+                                                    
                                                 </h5>
+                                                <h3>Room Name :{{ $appointment->roomName}}</h3>
                                                 <span class="d-block mb-4">{{ $appointment->present()->status }}</span>
+
                                                 
                                                 <img
                                                     class="img-fluid rounded-circle"
@@ -115,10 +121,11 @@
     <!-- [ Main Content ] end -->
     <script src="https://meet.jit.si/external_api.js"></script>
     <script>
+       
     document.addEventListener('DOMContentLoaded', function () {
         const domain = 'meet.jit.si';
         const options = {
-            roomName: roomName,
+            roomName: room,
             width: '100%',
             height: '100%',
             parentNode: document.querySelector('#jitsi-container'),
