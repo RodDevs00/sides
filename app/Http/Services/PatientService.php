@@ -34,7 +34,7 @@ class PatientService
         } catch (\Throwable $th) {
             return new ServiceResponse(
                 false,
-                'Erro ao buscar pacientes!',
+                'Error when searching for patients!',
                 null,
                 $th
             );
@@ -42,7 +42,7 @@ class PatientService
 
         return new ServiceResponse(
             true,
-            'Busca por pacientes com sucesso!',
+            'Successful patient search!',
             $patients
         );
     }

@@ -31,7 +31,7 @@
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-12">
-                        <nav class="navbar navbar-expand-lg navbar-light">
+                        <nav class="navbar navbar-expand-lg navbar-light mt-3">
                             <a class="navbar-brand" href="{{ route('index') }}"> <img src="{{ asset('img/landing/balais.png') }}"
                                     alt="logo" style="width: 50px;"> Balais Doctors Infirmary
                             </a>
@@ -45,13 +45,13 @@
                                 id="navbarSupportedContent">
                                 <ul class="navbar-nav align-items-center">
                                     <li class="nav-item active">
-                                        <a class="nav-link" href="#">Home</a>
+                                        
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#about">About</a>
+                                       
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#services">Services</a>
+                                       
                                     </li>
                                    
                                 </ul>
@@ -80,7 +80,7 @@
                         </div>
                     </div>
                     <div class="col-lg-6">
-                        <div class="banner_img ml-5">
+                        <div class="banner_img ml-5 mb-5">
                             <img src="{{ asset('img/landing/balais.png') }}" alt="">
                         </div>
                     </div>
@@ -89,97 +89,7 @@
         </section>
         <!-- banner part start-->
 
-        <!-- about us part start-->
-        <section class="about_us padding_top" id="about">
-            <div class="container">
-                <div class="row justify-content-between align-items-center">
-                    <div class="col-md-6 col-lg-6">
-                        <div class="about_us_img">
-                            <img src="{{ asset('img/landing/calendar.png') }}" alt="">
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-5">
-                        <div class="about_us_text">
-                            <h2>Services</h2>
-                            <p>Our main goal is for our patients to find the perfect doctor and schedule an appointment as easily as possible. This journey needs to be pleasant, so we are always willing to help. </p>
-                            <div class="banner_item">
-                                <div class="single_item">
-                                    <img src="{{ asset('img/landing/icon/banner_1.svg') }}" alt="">
-                                    <h5>Doctors</h5>
-                                </div>
-                                <div class="single_item">
-                                    <img src="{{ asset('img/landing/icon/banner_2.svg') }}" alt="">
-                                    <h5>Scheduling</h5>
-                                </div>
-                                <div class="single_item">
-                                    <img src="{{ asset('img/landing/icon/banner_3.svg') }}" alt="">
-                                    <h5>Qualified</h5>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- about us part end-->
-
-        <!-- feature_part start-->
-        <section class="feature_part" id="services">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-xl-8">
-                        <div class="section_tittle text-center">
-                            <h2>Our Services</h2>
-                        </div>
-                    </div>
-                </div>
-                <div class="row justify-content-between align-items-center">
-                    <div class="col-lg-3 col-sm-12">
-                        <div class="single_feature">
-                            <div class="single_feature_part">
-                                <span class="single_feature_icon"><img src="{{ asset('img/landing/children.png') }}"
-                                        alt=""></span>
-                                <h4>Pediatrics</h4>
-                                <p>Our mission is to offer preventative support so that children and adolescents grow up healthy and happy.</p>
-                            </div>
-                        </div>
-                        <div class="single_feature">
-                            <div class="single_feature_part">
-                                <span class="single_feature_icon"><img src="{{ asset('img/landing/heart.png') }}"
-                                        alt=""></span>
-                                <h4>Cardiology</h4>
-                                <p>Our cardiologists are highly qualified to identify diseases of one of the main organs of the human body.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-sm-12">
-                        <div class="single_feature_img">
-                            <img src="{{ asset('img/landing/doctors2.png') }}" alt="">
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-12">
-                        <div class="single_feature">
-                            <div class="single_feature_part">
-                                <span class="single_feature_icon"><img src="{{ asset('img/landing/eye.png') }}"
-                                        alt=""></span>
-                                <h4>Ophthalmology</h4>
-                                <p>Care for diseases that affect the eyes and vision is carried out by our ophthalmologists.</p>
-                            </div>
-                        </div>
-                        <div class="single_feature">
-                            <div class="single_feature_part">
-                                <span class="single_feature_icon"><img src="{{ asset('img/landing/bone.png') }}"
-                                        alt=""></span>
-                                <h4>Orthopedics</h4>
-                                <p>Our orthopedists take care of your bones, muscles, joints, ligaments and other components of your system.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- feature_part start-->
-
+       
         
 
         <!-- footer part start-->

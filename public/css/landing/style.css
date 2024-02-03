@@ -2498,11 +2498,23 @@ ul {
   height: 935px;
   position: relative;
   overflow: hidden;
-  background-image: url(../../img/landing/banner_bg.png);
+  background-image: url(../../img/landing/bg.jpg);
   background-repeat: no-repeat;
   background-size: 100% 100%;
   background-position: center;
 }
+
+.banner_part::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.7); /* Adjust the last value (0.5) for the desired opacity (0 to 1) */
+}
+
 
 @media (max-width: 991px) {
   /* line 2, ../../01 cl html template/03_jun 2019/182_medico_html/sass/_banner.scss */
