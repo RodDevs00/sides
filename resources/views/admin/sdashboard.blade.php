@@ -52,13 +52,14 @@
                                             <h5>Pending Appointments</h5>
                                         </div>
                                         <div class="card-block text-center">
-                                            <table id="tb-appointments" class="display" style="width:100%">
+                                        <table id="tb-appointments" class="display" style="width:100%">
                                                 <thead>
                                                     <tr>
                                                         <th>Patients</th>
                                                         <th>Doctor</th>
                                                         <th>Start Date</th>
                                                         <th>End Date</th>
+                                                        <th>Receipt</th>
                                                         <th>Confirm</th>
                                                     </tr>
                                                 </thead>
@@ -69,6 +70,13 @@
                                                             <td>{{ $appointment->doctor->name }}</td>
                                                             <td>{{ $appointment->start_date }}</td>
                                                             <td>{{ $appointment->end_date }}</td>
+                                                            <td>
+                                                                @if ($appointment->receipt_path)
+                                                                    <a href="{{ asset('storage/' . $appointment->receipt_path) }}" target="_blank">View Receipt</a>
+                                                                @else
+                                                                    No Receipt
+                                                                @endif
+                                                            </td>
                                                             <td>
                                                                 <a href="{{ route('appointments.confirm', $appointment->id) }}" class="btn btn-icon btn-outline-success">
                                                                     <i class="feather icon-check-circle"></i>

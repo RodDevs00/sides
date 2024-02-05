@@ -92,6 +92,7 @@
                                             <div id="jitsi-container"></div>
                                         @endif
 
+                                        @if ($user->type === 'patient')
                                         @if ($appointment->status === 'pending')
                                         <!-- Receipt display -->
                                         @if ($appointment->receipt_path)
@@ -117,6 +118,7 @@
                                     </form>
 
                                         @endif
+                                    @endif 
                                         <!-- Additional appointment details -->
                                         <div class="row m-t-30">
                                             <div class="col-md-6 col-lg-6">
