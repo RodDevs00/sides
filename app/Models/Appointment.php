@@ -16,7 +16,7 @@ class Appointment extends Model
     protected $presenter = AppointmentPresenter::class;
 
     protected $fillable = [
-        'patient_id', 'doctor_id', 'start_date', 'end_date', 'status', 'color','roomName', 
+        'patient_id', 'doctor_id', 'start_date', 'end_date', 'status', 'color','roomName', 'receipt_path',
     ];
     
 
@@ -39,5 +39,11 @@ class Appointment extends Model
     public function doctor()
     {
         return $this->belongsTo(User::class, 'doctor_id');
+    }
+
+    // Accessor to get the full URL of the receipt
+    public function getReceiptUrlAttribute()
+    {
+        return $this->receipt_path ? asset('storage/' . $this->receipt_path) : null;
     }
 }

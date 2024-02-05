@@ -9,11 +9,11 @@ class AppointmentPresenter extends Presenter
     public function status(): string
     {
         if ($this->entity->status === 'pending') {
-            return 'Pendente';
+            return 'Pending';
         }
         if ($this->entity->status === 'confirmed') {
-            return 'Confirmado';
+            return 'Confirmed';
         }
-        return 'Cancelado';
+        return 'Cancelled';
     }
 }

@@ -45,6 +45,7 @@
                                                 <thead>
                                                     <tr>
                                                         <th>Image</th>
+                                                        <th>test</th>
                                                         <th>Name</th>
                                                         <th>Email</th>
                                                         <th>Doctor</th>
@@ -62,11 +63,12 @@
                                                                     alt="patient-image"
                                                                 >
                                                             </td>
+                                                            <td>{{ $secretary->id }}</td>
                                                             <td>{{ $secretary->name }}</td>
                                                             <td>{{ $secretary->email }}</td>
-                                                            <td>{{ $secretary->doctors_id }}</td>
+                                                            <td>{{ $secretary->doctor_name }}</td>
                                                             <td>
-                                                                <a href="{{ route('secretaries.show', $secretary->id) }}" class="btn btn-icon btn-outline-primary">
+                                                                <a href="{{ route('secretaries.show', $secretary->userd) }}" class="btn btn-icon btn-outline-primary">
                                                                     <i class="feather icon-play"></i>
                                                                 </a>
                                                             </td>

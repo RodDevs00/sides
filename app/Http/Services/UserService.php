@@ -67,17 +67,25 @@ class UserService
             }
 
             if ($type === 'secretary') {
+                // dd($request->doctor_id); // Debugging to check the value being passed
+            
                 Secretary::create([
                     'user_id' => $user->id,
+                    'doctors_id' => $request->doctor_id,
                     // Add additional fields for Secretary model here
                 ]);
-
+            
                 $user->refresh();
-
+            
                 $secretary = $user->secretary;
+            
+                // dd($secretary->doctors_id); // Debugging to check the value after creation
+            
                 // Populate additional fields for Secretary model here
+            
                 $secretary->save();
             }
+            
 
             if ($type === 'doctor') {
                 Doctor::create([
@@ -179,6 +187,7 @@ class UserService
     
              
             $user->name = $request->name;
+            $user->email = $request->email;
            
             $user->save();
         } catch (\Throwable $th) {
@@ -200,7 +209,21 @@ class UserService
     public function destroy(int $userId): ServiceResponse
     {
         try {
+            // Find the user by ID
             $user = $this->userModel->find($userId);
+    
+            if (!$user) {
+                throw new \Exception('User not found.');
+            }
+    
+            // Find the secretary by user_id and delete it
+            $secretary = Secretary::where('user_id', $userId)->first();
+    
+            if ($secretary) {
+                $secretary->delete();
+            }
+    
+            // Delete the user
             $user->delete();
         } catch (\Throwable $th) {
             return new ServiceResponse(
@@ -210,11 +233,12 @@ class UserService
                 $th
             );
         }
-
+    
         return new ServiceResponse(
             true,
-            'User removed successfully!',
+            'User and Secretary removed successfully!',
             $user
         );
     }
+    
 }

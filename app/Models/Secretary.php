@@ -1,5 +1,6 @@
 <?php
 
+// Secretary model
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
@@ -9,9 +10,12 @@ class Secretary extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = ['user_id']; // Add other fillable fields
+    protected $fillable = ['user_id', 'doctors_id'];
 
-
-
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
     
 }
+

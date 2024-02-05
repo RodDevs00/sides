@@ -25,4 +25,6 @@ Route::middleware('auth')->group(function () {
     Route::resource('secretaries', 'SecretaryController');
     Route::resource('service', 'ServicesController');
     Route::get('/users/history', 'UserController@history')->name('users.history');
+    Route::post('/appointments/{appointment}/upload-receipt', 'AppointmentController@uploadReceipt')
+    ->name('appointments.uploadReceipt');
 });

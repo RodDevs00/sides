@@ -48,6 +48,16 @@
                                                 <input id='admin-name' class='form-control' type='text' name='name' placeholder="Name" required>
                                                 <input id='admin-email' class='form-control mt-3' type='text' name='email' placeholder="Email" required>
                                                 <input id='admin-password' class='form-control mt-3' type='password' name='password' placeholder="Password" required>
+                                                <!-- Select field for doctors -->
+                                                <div class="form-group mt-3">
+                                                    <label for="doctor_id">Select Doctor</label>
+                                                    <select class="form-control" id="doctor_id" name="doctor_id">
+                                                    <option value="" selected disabled>Select Doctor</option>
+                                                        @foreach($doctors as $doctor)
+                                                            <option value="{{ $doctor->id }}">{{ $doctor->name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
                                                 <br>
                                                 <button class='btn btn-outline-primary' type='submit'>Submit</button>
                                                 <br>

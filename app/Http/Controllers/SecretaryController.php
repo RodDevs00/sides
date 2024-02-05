@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Secretary;
 use Illuminate\Http\Request;
 use App\Http\Services\UserService;
 
@@ -25,13 +26,19 @@ class SecretaryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $user = auth()->user();  
-        $secretaries = User::where('type', 'secretary')->orderBy('name')->get();
+{
+    $user = auth()->user();
 
-        return view('admin.secretaries', compact('user', 'secretaries'));
-        
-    }
+    // Use the Secretary model to query the 'secretaries' table
+    $secretaries = Secretary::join('users', 'secretaries.user_id', '=', 'users.id')
+        ->leftJoin('users as doctors', 'secretaries.doctors_id', '=', 'doctors.id') // Left join with users table for doctors
+        ->where('users.type', 'secretary')
+        ->orderBy('users.name')
+        ->get(['users.*', 'secretaries.*', 'doctors.name as doctor_name','users.id as userd']); // Include the doctor's name in the result
+
+    return view('admin.secretaries', compact('user', 'secretaries'));
+}
+
 
     /**
      * Show the form for creating a new resource.
@@ -43,7 +50,10 @@ class SecretaryController extends Controller
         $user = auth()->user();
 
         if ($user->type === 'admin') {
-            return view('admin.secretaries-create', compact('user'));
+            // Retrieve the list of users with type 'doctor'
+            $doctors = User::where('type', 'doctor')->orderBy('name')->get(['id', 'name']);
+
+            return view('admin.secretaries-create', compact('user', 'doctors'));
         }
 
         abort(404);
@@ -83,6 +93,7 @@ class SecretaryController extends Controller
         $user = auth()->user();
 
         $secretary = $this->userModel->find($id);
+        // dd($secretary);
 
         if ($user->type === 'admin') {
             return view('admin.secretary', compact('user', 'secretary'));

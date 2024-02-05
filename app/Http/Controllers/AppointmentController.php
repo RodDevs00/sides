@@ -75,6 +75,25 @@ class AppointmentController extends Controller
         return response()->json($appointments);
     }
 
+    public function uploadReceipt(Appointment $appointment, Request $request)
+{
+    // Validate the uploaded file
+    $request->validate([
+        'receipt' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+    ]);
+
+    // Handle the file upload and save the receipt path to the appointment
+    $file = $request->file('receipt');
+    $path = $file->storeAs('receipts', 'receipt_' . $appointment->id . '.' . $file->getClientOriginalExtension(), 'public');
+
+    // Update the appointment with the receipt path
+    $appointment->update([
+        'receipt_path' => $path,
+    ]);
+
+    return redirect()->back()->withSuccess('Receipt uploaded successfully.');
+}
+
     /**
      * Store a newly created resource in storage.
      *
